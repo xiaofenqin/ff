@@ -194,12 +194,12 @@ fn prime_field_repr_impl(repr: &syn::Ident, limbs: usize) -> proc_macro2::TokenS
             }
         }
 
-        impl ::rand::Rand for #repr {
-            #[inline(always)]
-            fn rand<R: ::rand::Rng>(rng: &mut R) -> Self {
-                #repr(rng.gen())
-            }
-        }
+        // impl ::rand::Rand for #repr {
+        //     #[inline(always)]
+        //     fn rand<R: ::rand::Rng>(rng: &mut R) -> Self {
+        //         #repr(rng.gen())
+        //     }
+        // }
 
         impl ::std::fmt::Display for #repr {
             fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -1128,21 +1128,21 @@ fn prime_field_impl(
             }
         }
 
-        impl ::rand::Rand for #name {
-            /// Computes a uniformly random element using rejection sampling.
-            fn rand<R: ::rand::Rng>(rng: &mut R) -> Self {
-                loop {
-                    let mut tmp = #name(#repr::rand(rng));
-
-                    // Mask away the unused bits at the beginning.
-                    tmp.0.as_mut()[#top_limb_index] &= TOP_LIMB_SHAVE_MASK;
-
-                    if tmp.is_valid() {
-                        return tmp
-                    }
-                }
-            }
-        }
+        // impl ::rand::Rand for #name {
+        //     /// Computes a uniformly random element using rejection sampling.
+        //     fn rand<R: ::rand::Rng>(rng: &mut R) -> Self {
+        //         loop {
+        //             let mut tmp = #name(#repr::rand(rng));
+        //
+        //             // Mask away the unused bits at the beginning.
+        //             tmp.0.as_mut()[#top_limb_index] &= TOP_LIMB_SHAVE_MASK;
+        //
+        //             if tmp.is_valid() {
+        //                 return tmp
+        //             }
+        //         }
+        //     }
+        // }
 
         impl From<#name> for #repr {
             fn from(e: #name) -> #repr {

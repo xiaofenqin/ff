@@ -1,7 +1,7 @@
 #![allow(unused_imports)]
 
 extern crate byteorder;
-extern crate rand;
+//extern crate rand;
 extern crate serde;
 extern crate hex as hex_ext;
 pub mod hex {
@@ -30,7 +30,7 @@ pub trait Field: Sized
     + fmt::Debug 
     + fmt::Display 
     + 'static 
-    + rand::Rand 
+    //+ rand::Rand
     + hash::Hash 
     + Default 
     + serde::Serialize
@@ -118,7 +118,7 @@ pub trait PrimeFieldRepr:
     + fmt::Debug
     + fmt::Display
     + 'static
-    + rand::Rand
+    //+ rand::Rand
     + AsRef<[u64]>
     + AsMut<[u64]>
     + From<u64>
